@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TobyBloxYT</title>
+<style>
+  body {
+    background: #050505;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
+  }
+  h1 {
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    font-weight: 700;
+    margin: 0 0 28px;
+  }
+  nav {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+  }
+  a {
+    color: #71717a;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  a:hover { color: #fff; }
+
+  /* Minimal Lines & Center Spike */
+  .line { position: fixed; left: 0; width: 100%; height: 1px; background: #18181b; }
+  .top { top: 0; }
+  .bot { bottom: 0; }
+  .spike {
+    position: fixed;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 30px solid #27272a;
+  }
+
+  /* Bottom: Cube (Left -> Right) & Ship (Right -> Left) */
+  .cube-x { position: fixed; bottom: 1px; left: 0; animation: lr 16s linear infinite; }
+  .cube {
+    width: 34px; height: 34px;
+    background: linear-gradient(#ffea00, #ff8800);
+    border-radius: 6px;
+    position: relative;
+    animation: jump 16s infinite;
+  }
+  .cube::before, .cube::after { content: ""; position: absolute; background: #00f0ff; border: 2px solid #000; }
+  .cube::before { top: 6px; left: 6px; width: 5px; height: 5px; box-shadow: 12px 0 0 -2px #00f0ff, 12px 0 0 0 #000; }
+  .cube::after { bottom: 5px; left: 5px; width: 20px; height: 4px; }
+
+  .ship-x { position: fixed; bottom: 14px; left: 0; animation: rl 16s linear infinite 8s; transform: translateX(105vw); }
+  .ship {
+    width: 44px; height: 22px;
+    background: linear-gradient(#ffea00, #ff8800);
+    clip-path: polygon(100% 0, 75% 40%, 20% 40%, 0 15%, 0 85%, 25% 100%, 85% 100%);
+    animation: fly 16s ease-in-out infinite 8s;
+  }
+
+  /* Top: Wave Alternating Sides */
+  .wave-lr { position: fixed; top: 16px; left: 0; animation: lr 16s linear infinite 4s; transform: translateX(-60px); }
+  .wave-rl { position: fixed; top: 16px; left: 0; animation: rl 16s linear infinite 12s; transform: translateX(105vw); }
+  .wave {
+    width: 28px; height: 22px;
+    background: linear-gradient(#ffea00, #ff8800);
+    clip-path: polygon(0 0, 100% 50%, 0 100%, 22% 50%);
+  }
+  .wave-lr .wave { animation: zig1 16s linear infinite 4s; }
+  .wave-rl .wave { animation: zig2 16s linear infinite 12s; }
+
+  /* Keyframes */
+  @keyframes lr { 0% { transform: translateX(-60px); } 18%, 100% { transform: translateX(calc(100vw + 60px)); } }
+  @keyframes rl { 0% { transform: translateX(calc(100vw + 60px)); } 18%, 100% { transform: translateX(-60px); } }
+
+  @keyframes jump {
+    0%, 5% { transform: translateY(0) rotate(0); animation-timing-function: ease-out; }
+    9% { transform: translateY(-68px) rotate(180deg); animation-timing-function: ease-in; }
+    13%, 100% { transform: translateY(0) rotate(360deg); }
+  }
+  @keyframes fly {
+    0% { transform: translateY(-25px) rotate(0); }
+    9% { transform: translateY(-72px) rotate(14deg); }
+    18%, 100% { transform: translateY(-25px) rotate(0); }
+  }
+  @keyframes zig1 {
+    0% { transform: translateY(0) rotate(35deg); }
+    4.5% { transform: translateY(42px) rotate(-35deg); }
+    9% { transform: translateY(0) rotate(35deg); }
+    13.5% { transform: translateY(42px) rotate(-35deg); }
+    18%, 100% { transform: translateY(15px) rotate(35deg); }
+  }
+  @keyframes zig2 {
+    0% { transform: translateY(42px) scaleX(-1) rotate(35deg); }
+    4.5% { transform: translateY(0) scaleX(-1) rotate(-35deg); }
+    9% { transform: translateY(42px) scaleX(-1) rotate(35deg); }
+    13.5% { transform: translateY(0) scaleX(-1) rotate(-35deg); }
+    18%, 100% { transform: translateY(25px) scaleX(-1) rotate(35deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="line top"></div>
+  <h1>TOBYBLOXYT</h1>
+  <nav>
+    <a href="https://www.bandlab.com/tobybloxyt" target="_blank">BandLab</a>
+    <a href="https://tobyblox.newgrounds.com/" target="_blank">Newgrounds</a>
+  </nav>
+  <div class="line bot"></div>
+  <div class="spike"></div>
+  <div class="cube-x"><div class="cube"></div></div>
+  <div class="ship-x"><div class="ship"></div></div>
+  <div class="wave-lr"><div class="wave"></div></div>
+  <div class="wave-rl"><div class="wave"></div></div>
+</body>
+</html>
